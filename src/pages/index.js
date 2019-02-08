@@ -14,6 +14,7 @@ const IndexPage = () => (
         <p>Øyvind H</p>
         <p>Marianne</p>
         <p>Emil</p>
+        <p>Jørgen</p>
         <div style={{maxWidth: `300px`, marginBottom: `1.45rem`}}>
             <Image/>
         </div>
