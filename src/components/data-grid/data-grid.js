@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import uuid from "uuidv4";
 
 class DataGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      index: 0
     };
   }
 
@@ -13,13 +15,11 @@ class DataGrid extends Component {
     this.interval = setInterval(() => {
       Axios.get(this.props.url)
         .then(res => {
-          this.setState({ data: res.data }, () => {
-            console.log("did update");
-          });
+          this.setState({ data: res.data });
         })
         .catch(err => {
           console.log(err);
-        })
+        });
     }, 10000);
   }
   componentWillUnmount() {
@@ -38,10 +38,10 @@ class DataGrid extends Component {
       let row = [];
       for (var key in this.state.data[i]) {
         if (headers.includes(key)) {
-          row.push(<td>{data[i][key]}</td>);
+          row.push(<td key={uuid()}>{data[i][key]}</td>);
         }
       }
-      table.push(<tr key={i + 1}>{row}</tr>);
+      table.push(<tr key={uuid()}>{row}</tr>);
     }
     return table;
   };
@@ -51,13 +51,13 @@ class DataGrid extends Component {
       <div>
         <table>
           <tbody>
-          <tr key={0}>
-            {this.props.dataKeys.map(col => {
-              return <th>{col}</th>;
-            })}
-          </tr>
+            <tr key={0}>
+              {this.props.dataKeys.map(col => {
+                return <th key={uuid()}>{col}</th>;
+              })}
+            </tr>
 
-          {this.createRows()}
+            {this.createRows()}
           </tbody>
         </table>
       </div>
