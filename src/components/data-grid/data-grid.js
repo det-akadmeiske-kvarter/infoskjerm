@@ -10,18 +10,17 @@ class DataGrid extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(
-      () => {
-        Axios.get(this.props.url)
-          .then(res => {
-            this.setState({ data: res.data }, () => {console.log('did update')});
-          })
-          .catch(err => {
-            console.log(err);
-          }),
-      10000
-      }
-    );
+    this.interval = setInterval(() => {
+      Axios.get(this.props.url)
+        .then(res => {
+          this.setState({ data: res.data }, () => {
+            console.log("did update");
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }, 10000);
   }
   componentWillUnmount() {
     clearInterval(this.interval);
@@ -51,6 +50,7 @@ class DataGrid extends Component {
     return (
       <div>
         <table>
+          <tbody>
           <tr key={0}>
             {this.props.dataKeys.map(col => {
               return <th>{col}</th>;
@@ -58,6 +58,7 @@ class DataGrid extends Component {
           </tr>
 
           {this.createRows()}
+          </tbody>
         </table>
       </div>
     );
