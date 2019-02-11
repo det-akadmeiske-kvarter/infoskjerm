@@ -7,7 +7,7 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <DataGrid
-      url={"http://www.linticket.no/json/Kvarteret/index.php3"}
+      url={"/json/Kvarteret/index.php3"}
       dataKeys={[
         "Spillested",
         "Navn",
