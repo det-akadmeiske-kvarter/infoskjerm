@@ -8,7 +8,7 @@ import Img from "gatsby-image"
  * `StaticQuery`, which allows us to load the image from directly within this
  * component, rather than having to pass the image data down from pages.
  *
- * For more information, see the docs:
+ * For more information, see the docs:2
  * - `gatsby-image`: https://gatsby.app/gatsby-image
  * - `StaticQuery`: https://gatsby.app/staticquery
  */
