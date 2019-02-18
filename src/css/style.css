@@ -1,0 +1,56 @@
+/* Universal */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+/* CardEvent */
+.CardContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid darkgray;
+  background-color: darkgray;
+  border-radius: 4px;
+  max-width: 600px;
+  margin: 5px;
+  position: relative;
+}
+
+.CardFloorContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid lightgray;
+  background-color: lightgray;
+  border-radius: 4px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.CardFloorHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px;
+  border-bottom: 1px solid black;
+}
+
+.CardFloorFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px;
+  border-top: 1px solid black;
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  right: 5px;
+}
+
+.CardContent {
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  word-wrap: break-word;
+}
