@@ -1,0 +1,81 @@
+/* Universal */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+}
+
+/* CardEvent */
+.CardContainer {
+  font-size: 20px;
+  color: #00a5a5;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  border: solid 0.4px #8291d1;
+  background-color: #8291d1;
+  border-radius: 4px;
+  max-width: 600px;
+  margin: 20px;
+  padding-top: 30px;
+  position: relative;
+  box-shadow: 10px 10px 36px -14px rgba(0, 0, 0, 0.5);
+}
+
+.CardFloorContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  background-color: #eee8a9;
+  border-radius: 4px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.CardFloorHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px;
+  border-bottom: 0.4px solid #8291d1;
+}
+
+.CardFloorFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px;
+  border-top: 0.4px solid #8291d1;
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  right: 5px;
+}
+
+.CardContent {
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  word-wrap: break-word;
+}
+
+#logo {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 23.75px;
+  height: 23.75px;
+  margin-top: -18px;
+  border-radius: 50%;
+  border: 5px solid #FFF;
+  background-color: #8291d1;
+}
