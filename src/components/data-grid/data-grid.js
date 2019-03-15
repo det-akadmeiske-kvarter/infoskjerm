@@ -21,7 +21,7 @@ class DataGrid extends Component {
         .catch(err => {
           console.log(err);
         });
-    }, 10000);
+    }, 100);
   }
 
   componentWillUnmount() {
