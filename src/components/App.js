@@ -3,6 +3,9 @@ import Axios from "axios";
 import DataGrid from "../components/data-grid/data-grid";
 import EventCard from "./EventCard";
 import "../css/style.css";
+import {getFloor} from "../utils";
+import {getCurrentEvents} from "../utils";
+//import "../utils";
 
 class App extends Component {
   constructor() {
@@ -13,6 +16,13 @@ class App extends Component {
   }
 
   componentDidMount() {
+    Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
+        .then(res => {
+          this.setState({ eventData: res.data });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     this.interval = setInterval(() => {
       Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
         .then(res => {
@@ -32,13 +42,14 @@ class App extends Component {
     if (!this.state.eventData) {
       return <div>Loading..</div>;
     }
-    console.log(this.state.eventData)
+    var currentEvents = getCurrentEvents(this.state.eventData);
+
     return (
       <div>
         <h1 style={{ color: "#8B1C00" }}>Kvarteret: Informasjon-Skjerm</h1>
         <EventCard
-          floor={"Etg1"}
           value1={this.state.eventData[0]["arrangoernavn"]}
+          value1={this.state.eventData[0]["navn"]}
           value2={this.state.eventData[0]["dato"]}
           value3={this.state.eventData[0]["typenavn"]}
           value4={this.state.eventData[0]["sted"]}
