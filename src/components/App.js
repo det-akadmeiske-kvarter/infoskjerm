@@ -3,6 +3,7 @@ import Axios from "axios";
 import DataGrid from "../components/data-grid/data-grid";
 import EventCard from "./EventCard";
 import "../css/style.css";
+import utils from "./Utils";
 
 class App extends Component {
   constructor() {
@@ -37,7 +38,7 @@ class App extends Component {
       <div>
         <h1 style={{ color: "#8B1C00" }}>Kvarteret: Informasjon-Skjerm</h1>
         <EventCard
-          floor={"Etg1"}
+          floor={"etg " +utils.etage(this.state.eventData[0]["sted"])}
           value1={this.state.eventData[0]["arrangoernavn"]}
           value2={this.state.eventData[0]["dato"]}
           value3={this.state.eventData[0]["typenavn"]}
