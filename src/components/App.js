@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Axios from "axios";
 import DataGrid from "../components/data-grid/data-grid";
 import "../css/style.css";
+import {getFloor} from "../utils";
+import {getCurrentEvents} from "../utils";
+//import "../utils";
 
 import {getFloor} from "../utils.js";
 import FloorContainer from "./FloorContainer";
@@ -41,7 +44,8 @@ class App extends Component {
     if (!this.state.eventData) {
       return <div>Loading..</div>;
     }
-    console.log(this.state.eventData)
+    var currentEvents = getCurrentEvents(this.state.eventData);
+
     return (
       <div id="MainContainer">
         <h1 id="title">Kvarteret: Informasjon-Skjerm</h1>
