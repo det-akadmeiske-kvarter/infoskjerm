@@ -1,20 +1,20 @@
-/**
- * Takes event and returns which floor event is in.
- * 
- */  
-var etasje1 = ["Grøndahls Flygel- Og Pianolager", "Eldorado", "Teglverket"];
+var etasje1 = ["Grøndahls Flygel- Og Pianolager", "Eldorado", "Teglverket", "Bakgården"];
 var etasje2 = ["Stjernesalen", "Maos Lille Røde"];
 var etasje3 = ["Troferommet"];
 
-export function getFloor(event){
-    if(etasje1.indexOf(event.sted) >= 0){
-        return "Etasje 1";
+/**
+ * Takes room name and returns which floor event is in.
+ * 
+ */  
+export function getFloorNumber(roomName){
+    if(etasje1.indexOf(roomName) >= 0){
+        return 1;
     }
-    if(etasje2.indexOf(event.sted) >= 0){
-        return "Etasje 2";
+    if(etasje2.indexOf(roomName) >= 0){
+        return 2;
     }
-    if(etasje3.indexOf(event.sted) >= 0){
-        return "Etasje 3";
+    if(etasje3.indexOf(roomName) >= 0){
+        return 3;
     }
     return; 
 }
@@ -26,14 +26,31 @@ export function getFloor(event){
 export function getCurrentEvents(events){
     var currentEvents = [];
     var currentdate = new Date(); 
-    var datetime = currentdate.getFullYear() + "-"+ (currentdate.getMonth()+1)  + "-" + currentdate.getDay();
+    var datetime = currentdate.getFullYear() + "-"+ (currentdate.getMonth()+1)  + "-" + currentdate.getDate();
     if(currentdate.getMonth()+1 < 10){
-        datetime = currentdate.getFullYear() + "-0"+ (currentdate.getMonth()+1)  + "-" + currentdate.getDay();
+        datetime = currentdate.getFullYear() + "-0"+ (currentdate.getMonth()+1)  + "-" + currentdate.getDate();
     }
     for(var i = 0; i < events.length; i++){
-        if(events[i]["dato"] == currentdate){
+        if(events[i]["dato"] == datetime){
             currentEvents.push(events[i]);
         }
     }
+    console.log(currentEvents);
     return currentEvents;
+}
+
+/**
+ * Get events for today, at inFloor
+ * Example: Get events at 2nd floor -> getEventsAtFloor(events,2)
+ */ 
+export function getEventsAtFloor(events, inFloor){
+    var eventsAtFloor = [];
+    var currentEvents = getCurrentEvents(events);
+    console.log(currentEvents);
+    for(var i = 0; i < currentEvents.length; i++){
+        if(getFloorNumber(currentEvents[i]["sted"]) == inFloor) {
+            eventsAtFloor.push(currentEvents[i]);
+        }
+    }
+    return eventsAtFloor;
 }

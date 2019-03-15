@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import DataGrid from "../components/data-grid/data-grid";
 import "../css/style.css";
-import {getFloor} from "../utils";
-import {getCurrentEvents} from "../utils";
+import {getEventsAtFloor} from "../utils";
 //import "../utils";
 
 import {getFloor} from "../utils.js";
@@ -44,20 +43,21 @@ class App extends Component {
     if (!this.state.eventData) {
       return <div>Loading..</div>;
     }
-    var currentEvents = getCurrentEvents(this.state.eventData);
-
     return (
       <div id="MainContainer">
         <h1 id="title">Kvarteret: Informasjon-Skjerm</h1>
         {/* TODO: Bytt ut eventData med data fra hver etasje */}
         <FloorContainer
-          eventData={this.state.eventData}
+          floor={1}
+          eventData={getEventsAtFloor(this.state.eventData, 1)}
         />
         <FloorContainer
-          eventData={this.state.eventData}
+        floor={2}
+          eventData={getEventsAtFloor(this.state.eventData, 2)}
         />
         <FloorContainer
-          eventData={this.state.eventData}
+        floor={3}
+          eventData={getEventsAtFloor(this.state.eventData, 3)}
         />
       </div>
     );
