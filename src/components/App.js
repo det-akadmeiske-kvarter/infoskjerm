@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import DataGrid from "../components/data-grid/data-grid";
 import "../css/style.css";
 import { getEventsAtFloor, generateEventCards } from "../utils";
 import { returnDummyData } from '../dummy-data/events'
