@@ -10,21 +10,39 @@ h6 {
 
 body {
   font-family: "Quicksand", sans-serif;
+  background-color: #e60f0d;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#title {
+  color: white;
+  text-align: center;
+}
+
+#app {
+  width: 100%;
+}
+
+#mainContainer {
+  width: 100%;
 }
 
 /* CardEvent */
 .CardContainer {
+  width: 98%;
+  margin: auto;
+  margin-bottom: 2vh;
   font-size: 20px;
-  color: #00a5a5;
   line-height: 1.5;
-  display: flex;
   flex-direction: column;
   border: solid 0.4px #8291d1;
   background-color: #8291d1;
   border-radius: 4px;
-  max-width: 600px;
-  margin: 20px;
-  padding-top: 30px;
   position: relative;
   box-shadow: 10px 10px 36px -14px rgba(0, 0, 0, 0.5);
 }
@@ -34,7 +52,7 @@ body {
   flex-direction: column;
   margin: 5px;
   padding: 5px;
-  background-color: #eee8a9;
+  background-color: lightgray;
   border-radius: 4px;
   flex-grow: 1;
   position: relative;
@@ -45,7 +63,6 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 2px;
-  border-bottom: 0.4px solid #8291d1;
 }
 
 .CardFloorFooter {
@@ -53,7 +70,6 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 2px;
-  border-top: 0.4px solid #8291d1;
   position: absolute;
   bottom: 0;
   left: 5px;
@@ -61,11 +77,32 @@ body {
 }
 
 .CardContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
   margin-left: 30px;
   margin-top: 10px;
   margin-bottom: 20px;
   margin-right: 10px;
   word-wrap: break-word;
+}
+
+.CardContent .Left {
+  align-content: flex-start;
+  flex-basis: 20%;
+  flex-direction: column;
+  display: flex;
+}
+
+.CardContent .Middle {
+  flex-basis: 60%;
+  text-align: center;
+}
+
+.CardContent .Right {
+  align-items: flex-end;
+  flex-basis: 20%;
 }
 
 #logo {
