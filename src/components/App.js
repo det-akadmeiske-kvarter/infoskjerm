@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Axios from "axios";
 import DataGrid from "../components/data-grid/data-grid";
 import "../css/style.css";
-import {getEventsAtFloor} from "../utils";
+import { getEventsAtFloor, generateEventCards } from "../utils";
+import { returnDummyData } from '../dummy-data/events'
 //import "../utils";
 
 import {getFloor} from "../utils.js";
@@ -17,7 +18,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
+    this.setState({eventData: returnDummyData()})
+    /* Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
         .then(res => {
           this.setState({ eventData: res.data });
         })
@@ -32,7 +34,7 @@ class App extends Component {
         .catch(err => {
           console.log(err);
         });
-    }, 10000);
+    }, 10000); */
   }
 
   componentWillUnmount() {
@@ -48,16 +50,16 @@ class App extends Component {
         <h1 id="title">Kvarteret: Informasjon-Skjerm</h1>
         {/* TODO: Bytt ut eventData med data fra hver etasje */}
         <FloorContainer
+          floor={3}
+          eventCards={generateEventCards(getEventsAtFloor(this.state.eventData, 3))}
+        />
+        <FloorContainer
+          floor={2}
+          eventCards={generateEventCards(getEventsAtFloor(this.state.eventData, 2))}
+        />
+        <FloorContainer
           floor={1}
-          eventData={getEventsAtFloor(this.state.eventData, 1)}
-        />
-        <FloorContainer
-        floor={2}
-          eventData={getEventsAtFloor(this.state.eventData, 2)}
-        />
-        <FloorContainer
-        floor={3}
-          eventData={getEventsAtFloor(this.state.eventData, 3)}
+          eventCards={generateEventCards(getEventsAtFloor(this.state.eventData, 1))}
         />
       </div>
     );

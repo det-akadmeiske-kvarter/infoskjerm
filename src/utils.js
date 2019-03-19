@@ -1,3 +1,6 @@
+import React from 'react'
+import EventCard from './components/EventCard'
+
 var etasje1 = ["Grøndahls Flygel- Og Pianolager", "Eldorado", "Teglverket", "Bakgården"];
 var etasje2 = ["Stjernesalen", "Maos Lille Røde"];
 var etasje3 = ["Troferommet"];
@@ -53,4 +56,25 @@ export function getEventsAtFloor(events, inFloor){
         }
     }
     return eventsAtFloor;
+}
+/**
+ * Returns a list of EventCard components to be rendered
+ * @param {*} events All list of events (pass function getEventsAtFloor() if you want a filtered list)
+ */
+export function generateEventCards(events) {
+    let eventCardList =[];
+
+    for (let i = 0; i < events.length; i++) {
+        eventCardList.push(<EventCard
+            key={i}
+            leftValue1={events[i]["arrangoernavn"]}
+            leftValue2={events[i]["sted"]}
+            middleValue={events[i]["navn"]}
+            rightValue1={events[i]["datostart"]}
+            rightValue2={events[i]["starttid"]}
+        />);
+        
+    }
+
+    return eventCardList;
 }
