@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import "../css/style.css";
-import { getEventsAtFloor, generateEventCards } from "../utils";
+import { getEventsAtFloor, generateEventCards, filterPastEvents } from "../utils";
 import { returnDummyData } from '../dummy-data/events'
-//import "../utils";
 
 import {getFloor} from "../utils.js";
 import FloorContainer from "./FloorContainer";
@@ -17,10 +16,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({eventData: returnDummyData()})
+    this.interval = setInterval(() => {
+      this.setState({eventData: filterPastEvents(returnDummyData())})
+    }, 1000)
+    
     /* Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
         .then(res => {
-          this.setState({ eventData: res.data });
+          this.setState({ eventData: filterPastEvents(res.data) });
         })
         .catch(err => {
           console.log(err);
