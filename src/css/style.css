@@ -6,17 +6,22 @@ h4,
 h5,
 h6 {
   margin: 0;
+  text-transform: uppercase;
+}
+
+html {
+  height: 100%;
 }
 
 body {
-  font-family: "Quicksand", sans-serif;
-  background-color: #e60f0d;
-  overflow: hidden;
+  font-family: "Sniglet", serif;
+  background-color: white;
   margin: 0;
   padding: 0;
   display: flex;
   align-content: center;
   justify-content: center;
+  height: 100%;
 }
 
 #title {
@@ -26,25 +31,49 @@ body {
 
 #app {
   width: 100%;
+  height: 100%;
 }
 
-#mainContainer {
+#MainContainer {
   width: 100%;
+  height: 100%;
+}
+
+#Floors {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.Header {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 120px;
+  background-color: #e60f0d
+}
+
+#logo {
+  position: absolute;
+  height: 120px;
+  padding-top: 10px;
 }
 
 /* CardEvent */
 .CardContainer {
   width: 98%;
   margin: auto;
+  color: white;
   margin-bottom: 2vh;
   font-size: 20px;
   line-height: 1.5;
   flex-direction: column;
-  border: solid 0.4px #8291d1;
-  background-color: #8291d1;
+  background: linear-gradient(to right,#e60f0d 60%,#FF3F28 90%,#e60f0d 75%);
   border-radius: 4px;
   position: relative;
-  box-shadow: 10px 10px 36px -14px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
 }
 
 .CardFloorContainer {
@@ -52,9 +81,6 @@ body {
   flex-direction: column;
   margin: 5px;
   padding: 5px;
-  background-color: lightgray;
-  border-radius: 4px;
-  flex-grow: 1;
   position: relative;
 }
 
@@ -81,38 +107,47 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
 
-  margin-left: 30px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  margin-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
   word-wrap: break-word;
 }
 
 .CardContent .Left {
-  align-content: flex-start;
-  flex-basis: 20%;
   flex-direction: column;
   display: flex;
+  justify-content: space-around;
+  position: relative;
+  left: 20px;
+  flex-basis: 25%;
 }
 
 .CardContent .Middle {
-  flex-basis: 60%;
+  flex-basis: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
   text-align: center;
 }
 
-.CardContent .Right {
-  align-items: flex-end;
-  flex-basis: 20%;
+#etgH {
+  color: #00A5A5;
+  margin-left: 20px;
 }
 
-#logo {
+#leftValue1 {
+  font-style: oblique;
+}
+
+#leftValue2 {
+  font-weight: bold;
+  color: white;
+}
+
+.CardContent .Right {
+  display: flex;
+  text-align: center;
   position: absolute;
-  top: 0;
-  right: 50%;
-  width: 23.75px;
-  height: 23.75px;
-  margin-top: -18px;
-  border-radius: 50%;
-  border: 5px solid #FFF;
-  background-color: #8291d1;
+  margin-right: 20px;
+  right: 0;
+  font-style: oblique;
 }

@@ -6,6 +6,7 @@ import { returnDummyData } from '../dummy-data/events'
 
 import {getFloor} from "../utils.js";
 import FloorContainer from "./FloorContainer";
+import Header from "./Header";
 
 class App extends Component {
   constructor() {
@@ -16,11 +17,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
+    /* this.interval = setInterval(() => {
       this.setState({eventData: filterPastEvents(returnDummyData())})
-    }, 1000)
+    }, 1000) */
     
-    /* Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
+    Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
         .then(res => {
           this.setState({ eventData: filterPastEvents(res.data) });
         })
@@ -35,7 +36,7 @@ class App extends Component {
         .catch(err => {
           console.log(err);
         });
-    }, 10000); */
+    }, 10000);
   }
 
   componentWillUnmount() {
@@ -48,8 +49,9 @@ class App extends Component {
     }
     return (
       <div id="MainContainer">
-        <h1 id="title">Kvarteret: Informasjon-Skjerm</h1>
-        {/* TODO: Bytt ut eventData med data fra hver etasje */}
+        <Header />
+        <div id='Floors'>
+          {/* TODO: Bytt ut eventData med data fra hver etasje */}
         <FloorContainer
           floor={3}
           eventCards={generateEventCards(getEventsAtFloor(this.state.eventData, 3))}
@@ -62,6 +64,7 @@ class App extends Component {
           floor={1}
           eventCards={generateEventCards(getEventsAtFloor(this.state.eventData, 1))}
         />
+        </div>
       </div>
     );
   }
