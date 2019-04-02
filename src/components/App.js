@@ -21,7 +21,7 @@ class App extends Component {
       this.setState({eventData: filterPastEvents(returnDummyData())})
     }, 1000) */
     
-    Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
+    Axios.get("https://kvarteret.no/info/fetchxml.php")
         .then(res => {
           this.setState({ eventData: filterPastEvents(res.data) });
         })
@@ -29,9 +29,9 @@ class App extends Component {
           console.log(err);
         });
     this.interval = setInterval(() => {
-      Axios.get("https://kvarteret.no/infoskjerm-test/fetchxml.php")
+      Axios.get("https://kvarteret.no/info/fetchxml.php")
         .then(res => {
-          this.setState({ eventData: res.data });
+          this.setState({ eventData: filterPastEvents(res.data) });
         })
         .catch(err => {
           console.log(err);

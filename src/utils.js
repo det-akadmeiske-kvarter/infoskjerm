@@ -1,9 +1,9 @@
 import React from 'react'
 import EventCard from './components/EventCard'
 
-var etasje1 = ["Grøndahls Flygel- Og Pianolager", "Eldorado", "Teglverket", "Bakgården"];
-var etasje2 = ["Stjernesalen", "Maos Lille Røde"];
-var etasje3 = ["Troferommet"];
+var etasje1 = ["Grøndahls Flygel- Og Pianolager", "Eldorado", "Teglverket", "Grønndahls", "Tivoli", "Tivoli + Eldorado"];
+var etasje2 = ["Stjernesalen", "Maos Lille Røde", "Speilsalen", "Lobbyen", "Bakgården"];
+var etasje3 = ["Troferommet", "Storelogen", "Støy", "Stillhet", "Halvtimen"];
 
 /**
  * Takes room name and returns which floor event is in.
@@ -28,11 +28,20 @@ export function getFloorNumber(roomName){
  */ 
 export function getCurrentEvents(events){
     var currentEvents = [];
-    var currentdate = new Date(); 
-    var datetime = currentdate.getFullYear() + "-"+ (currentdate.getMonth()+1)  + "-" + currentdate.getDate();
-    if(currentdate.getMonth()+1 < 10){
-        datetime = currentdate.getFullYear() + "-0"+ (currentdate.getMonth()+1)  + "-" + currentdate.getDate();
+    var currentdate = new Date();
+    var year = currentdate.getFullYear();
+    var month = currentdate.getMonth() + 1;
+    var day = currentdate.getDate();
+
+    if(month < 10) {
+        month = '0' + month;
     }
+
+    if(day < 10) {
+        day = '0' + day;
+    }
+
+    var datetime = year + '-' + month + '-' + day
     for(var i = 0; i < events.length; i++){
         if(events[i]["dato"] == datetime){
             currentEvents.push(events[i]);
@@ -80,7 +89,20 @@ export function generateEventCards(events) {
 
 export function filterPastEvents(events) {
     var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var hours = today.getHours();
+    var min = today.getMinutes();
+    var sec = today.getSeconds();
+    if(hours < 10) {
+        hours = '0' + hours;
+    }
+    if(min < 10) {
+        min = '0' + min;
+    }
+    if(sec < 10) {
+        sec = '0' + sec;
+    }
+    var time = hours + ":" + min + ":" + sec;
+
     var filteredEvents = events.filter(e => e.slutt > time)
     return filteredEvents
 }
