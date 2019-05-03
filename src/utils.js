@@ -1,108 +1,150 @@
-import React from 'react'
-import EventCard from './components/EventCard'
+import React from "react";
+import EventCard from "./components/EventCard";
 
-var etasje1 = ["Grøndahls Flygel- Og Pianolager", "Eldorado", "Teglverket", "Teglverket + Stillhet/Backstage", "Grønndahls", "Tivoli", "Tivoli + Eldorado"];
-var etasje2 = ["Stjernesalen", "Maos Lille Røde", "Speilsalen", "Lobbyen", "Bakgården"];
+var etasje1 = [
+  "Grøndahls Flygel- Og Pianolager",
+  "Eldorado",
+  "Teglverket",
+  "Teglverket + Stillhet/Backstage",
+  "Grønndahls",
+  "Tivoli",
+  "Tivoli + Eldorado"
+];
+var etasje2 = [
+  "Stjernesalen",
+  "Maos Lille Røde",
+  "Speilsalen",
+  "Lobbyen",
+  "Bakgården"
+];
 var etasje3 = ["Troferommet", "Storelogen", "Støy", "Stillhet", "Halvtimen"];
 
 /**
  * Takes room name and returns which floor event is in.
- * 
- */  
-export function getFloorNumber(roomName){
-    if(etasje1.indexOf(roomName) >= 0){
-        return 1;
-    }
-    if(etasje2.indexOf(roomName) >= 0){
-        return 2;
-    }
-    if(etasje3.indexOf(roomName) >= 0){
-        return 3;
-    }
-    return; 
+ *
+ */
+
+export function getFloorNumber(roomName) {
+  if (etasje1.indexOf(roomName) >= 0) {
+    return 1;
+  }
+  if (etasje2.indexOf(roomName) >= 0) {
+    return 2;
+  }
+  if (etasje3.indexOf(roomName) >= 0) {
+    return 3;
+  }
+  return;
 }
 
 /**
  * Takes a list with events, and returns events for today.
- * 
- */ 
-export function getCurrentEvents(events){
-    var currentEvents = [];
-    var currentdate = new Date();
-    var year = currentdate.getFullYear();
-    var month = currentdate.getMonth() + 1;
-    var day = currentdate.getDate();
+ *
+ */
 
-    if(month < 10) {
-        month = '0' + month;
+export function getCurrentEvents(events) {
+  var currentEvents = [];
+  var datetime = getDate();
+  for (var i = 0; i < events.length; i++) {
+    if (events[i]["dato"] == datetime) {
+      currentEvents.push(events[i]);
     }
-
-    if(day < 10) {
-        day = '0' + day;
-    }
-
-    var datetime = year + '-' + month + '-' + day
-    for(var i = 0; i < events.length; i++){
-        if(events[i]["dato"] == datetime){
-            currentEvents.push(events[i]);
-        }
-    }
-    console.log(currentEvents);
-    return currentEvents;
+  }
+  return currentEvents;
 }
 
 /**
  * Get events for today, at inFloor
  * Example: Get events at 2nd floor -> getEventsAtFloor(events,2)
- */ 
-export function getEventsAtFloor(events, inFloor){
-    var eventsAtFloor = [];
-    var currentEvents = getCurrentEvents(events);
-    console.log(currentEvents);
-    for(var i = 0; i < currentEvents.length; i++){
-        if(getFloorNumber(currentEvents[i]["sted"]) == inFloor) {
-            eventsAtFloor.push(currentEvents[i]);
-        }
+ */
+
+export function getEventsAtFloor(events, inFloor) {
+  var eventsAtFloor = [];
+  var currentEvents = getCurrentEvents(events);
+  for (var i = 0; i < currentEvents.length; i++) {
+    if (getFloorNumber(currentEvents[i]["sted"]) == inFloor) {
+      eventsAtFloor.push(currentEvents[i]);
     }
-    return eventsAtFloor;
+  }
+  return eventsAtFloor;
 }
 /**
  * Returns a list of EventCard components to be rendered
  * @param {*} events All list of events (pass function getEventsAtFloor() if you want a filtered list)
  */
 export function generateEventCards(events) {
-    let eventCardList =[];
+  let eventCardList = [];
 
-    for (let i = 0; i < events.length; i++) {
-        eventCardList.push(<EventCard
-            key={i}
-            leftValue1={events[i]["arrangoernavn"]}
-            leftValue2={events[i]["sted"]}
-            middleValue={<h2>{events[i]["navn"]}</h2>}
-            rightValue2={events[i]["starttid"]}
-        />);
-        
-    }
+  for (let i = 0; i < events.length; i++) {
+    eventCardList.push(
+      <EventCard
+        key={i}
+        leftValue1={events[i]["arrangoernavn"]}
+        leftValue2={events[i]["sted"]}
+        middleValue={<h2>{events[i]["navn"]}</h2>}
+        rightValue2={events[i]["starttid"]}
+      />
+    );
+  }
 
-    return eventCardList;
+  return eventCardList;
 }
 
+/**
+ * Removes events that has finished if they are finished before 00:00:00.
+ * All events that finished between 00:00:00 and 03:00:00 at night will be kept
+ * @param { all the events } events
+ */
 export function filterPastEvents(events) {
-    var today = new Date();
-    var hours = today.getHours();
-    var min = today.getMinutes();
-    var sec = today.getSeconds();
-    if(hours < 10) {
-        hours = '0' + hours;
+  var time = getTime();
+  var filteredEvents = events.filter(e => {
+    if (e.slutt >= "00:00:00" && e.slutt <= "03:00:00") {
+      return e;
+    } else if (e.slutt > time) {
+      return e;
     }
-    if(min < 10) {
-        min = '0' + min;
-    }
-    if(sec < 10) {
-        sec = '0' + sec;
-    }
-    var time = hours + ":" + min + ":" + sec;
+  });
+  return filteredEvents;
+}
 
-    var filteredEvents = events.filter(e => e.slutt > time)
-    return filteredEvents
+/**
+ * Returns the current date
+ */
+export function getDate() {
+  var currentdate = new Date();
+  var year = currentdate.getFullYear();
+  var month = currentdate.getMonth() + 1;
+  var day = currentdate.getDate();
+
+  if (month < 10) {
+    month = "0" + month;
+  }
+
+  if (day < 10) {
+    day = "0" + day;
+  }
+
+  var datetime = year + "-" + month + "-" + day;
+  return datetime;
+}
+
+/**
+ * Returns the current time
+ */
+export function getTime() {
+  var today = new Date();
+  var hours = today.getHours();
+  var min = today.getMinutes();
+  var sec = today.getSeconds();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (min < 10) {
+    min = "0" + min;
+  }
+  if (sec < 10) {
+    sec = "0" + sec;
+  }
+  var time = hours + ":" + min + ":" + sec;
+  return time;
 }
