@@ -6,7 +6,7 @@ export default class FloorContainer extends Component {
     return (
       <div className="CardFloorContainer">
         <div className="CardFloorHeader">
-            <h2 id='etgH'>Etg {this.props.floor}</h2>
+            <h2 id='etgH'>{this.props.floor}. etasje</h2>
         </div>
         {this.props.eventCards}
       </div>
