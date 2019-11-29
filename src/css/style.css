@@ -16,7 +16,7 @@ html {
 
 body {
   font-family: 'Raleway', sans-serif;
-  background: linear-gradient(to bottom,#e60f0d 60%,#a50100 100%);
+  background: #120c09;
   margin: 0;
   padding: 0;
   display: flex;
@@ -25,10 +25,11 @@ body {
 }
 
 #title {
-  color: white;
+  color: #ff6660;
   text-align: center;
   font-weight: 100;
   margin-top: 200px;
+  margin-left: 45px;
   font-size: 4em;
 }
 
@@ -55,30 +56,29 @@ body {
 .Header {
   display: flex;
   position: relative;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
   height: 300px;
-  background-color: #e60f0d;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 #logo {
   position: absolute;
   height: 120px;
-  padding-top: 40px;
+  margin-top: 140px;
+  margin-right: 40px;
 }
 
 /* CardEvent */
 .CardContainer {
   width: 98%;
   margin: auto;
-  color: white;
+  color: #ff6660;
   margin-bottom: 2vh;
   font-size: 20px;
   line-height: 1.5;
   flex-direction: column;
-  background: linear-gradient(to right,#e60f0d 80%,#ff0d0a 140%);
   position: relative;
-  box-shadow: 3px 4px 3px 1px rgba(0,0,0,0.2), 0px 0px 1px 0px rgba(0,0,0,0.10), 0px 2px 1px -1px rgba(0,0,0,0.05);
 }
 
 .CardFloorContainer {
@@ -135,7 +135,7 @@ body {
 }
 
 #etgH {
-  color: #FFFFFF;
+  color: #ff6660;
   margin-left: 20px;
   margin-bottom: 10px;
   font-size: 2em;
@@ -144,11 +144,12 @@ body {
 
 #leftValue1 {
   font-style: oblique;
+  color: #ff6660;
 }
 
 #leftValue2 {
   font-weight: bold;
-  color: white;
+  color: #ff6660;
 }
 
 .CardContent .Right {
