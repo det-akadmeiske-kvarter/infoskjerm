@@ -2,10 +2,9 @@ import React from "react";
 import EventCard from "./components/EventCard";
 
 var etasje1 = [
-  "Grøndahls Flygel- Og Pianolager",
+  "Grøndahls Flygel- og Pianolager",
   "Eldorado",
   "Teglverket",
-  "Teglverket + Stillhet/Backstage",
   "Grønndahls",
   "Tivoli",
   "Tivoli + Eldorado"
