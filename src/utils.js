@@ -1,7 +1,7 @@
 import React from 'react'
 import EventCard from './components/EventCard'
 
-var etasje1 = ["Grøndahls Flygel- Og Pianolager", "Eldorado", "Teglverket", "Teglverket + Stillhet/Backstage", "Grønndahls", "Tivoli", "Tivoli + Eldorado"];
+var etasje1 = ["Grøndahls Flygel- og Pianolager", "Eldorado", "Teglverket", "Grønndahls", "Tivoli", "Tivoli + Eldorado"];
 var etasje2 = ["Stjernesalen", "Maos Lille Røde", "Speilsalen", "Lobbyen", "Bakgården"];
 var etasje3 = ["Troferommet", "Storelogen", "Støy", "Stillhet", "Halvtimen"];
 
