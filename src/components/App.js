@@ -11,31 +11,7 @@ import { returnDummyData } from "../dummy-data/events";
 import FloorContainer from "./FloorContainer";
 import Header from "./Header";
 
-import { pulse, headShake } from "react-animations";
 import Radium, { StyleRoot } from "radium";
-
-const styles = {
-  pulse1: {
-    animation: "1 0.5s 0s",
-    animationName: Radium.keyframes(pulse, "pulse1")
-  },
-  pulse2: {
-    animation: "1 0.5s 0.10s",
-    animationName: Radium.keyframes(pulse, "pulse2")
-  },
-  pulse3: {
-    animation: "1 0.5s 0.20s",
-    animationName: Radium.keyframes(pulse, "pulse3")
-  },
-  pulse4: {
-    animation: "3 0.5s 0.30s",
-    animationName: Radium.keyframes(pulse, "pulse4")
-  },
-  bounceIn: {
-    animation: "1 0.5s 1.35s",
-    animationName: Radium.keyframes(headShake, "bounceIn")
-  }
-};
 
 class App extends Component {
   constructor() {
@@ -101,13 +77,13 @@ class App extends Component {
     return (
       <StyleRoot>
         <div id="MainContainer">
-          <div style={styles.bounceIn}>
-            <div style={styles.pulse4}>
+          <div >
+            <div >
               <Header />
             </div>
           </div>
           <div id="Floors">
-            <div style={styles.pulse3}>
+            <div>
               <FloorContainer
                 floor={3}
                 eventCards={generateEventCards(
@@ -115,7 +91,7 @@ class App extends Component {
                 )}
               />
             </div>
-            <div style={styles.pulse2}>
+            <div>
               <FloorContainer
                 floor={2}
                 eventCards={generateEventCards(
@@ -123,7 +99,7 @@ class App extends Component {
                 )}
               />
             </div>
-            <div style={styles.pulse1}>
+            <div>
               <FloorContainer
                 floor={1}
                 eventCards={generateEventCards(

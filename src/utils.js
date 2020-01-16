@@ -79,9 +79,9 @@ export function generateEventCards(events) {
       <EventCard
         key={i}
         leftValue1={events[i]["arrangoernavn"]}
-        leftValue2={events[i]["sted"]}
-        middleValue={<h2>{events[i]["navn"]}</h2>}
-        rightValue2={events[i]["starttid"]}
+        sted={events[i]["sted"]}
+        event={<h2>{events[i]["navn"]}</h2>}
+        tid={events[i]["starttid"]}
       />
     );
   }

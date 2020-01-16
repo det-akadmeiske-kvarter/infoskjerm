@@ -6,11 +6,10 @@ export default class EventCard extends Component {
       <div className="CardContainer">
         <div className="CardContent">
           <div className="Left">
-            <span id="leftValue1">{this.props.leftValue1}</span>
-            <span id="leftValue2">{this.props.leftValue2}</span>
+            <span id="leftValue2">{this.props.sted}</span>
           </div>
-          <div className="Middle">{this.props.middleValue}</div>
-          <div className="Right">{this.props.rightValue2}</div>
+          <div className="Middle">{this.props.event}</div>
+          <div className="Right">{this.props.tid}</div>
         </div>
       </div>
     );

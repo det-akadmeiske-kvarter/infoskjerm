@@ -10,7 +10,7 @@ class Header extends Component {
       <div className="Header">
         <img
           id="logo"
-          src="https://kvarteret.no/wp-content/uploads/2016/10/pingvinlogo_pms1797_hvit_360.png"
+          src="https://kvarteret.no/wp-content/uploads/dak-logo/Kvarteret_logo_rosa.png"
         />
         <h2 id="title">Dette skjer i dag</h2>
       </div>
