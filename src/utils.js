@@ -78,7 +78,7 @@ export function generateEventCards(events) {
     eventCardList.push(
       <EventCard
         key={i}
-        leftValue1={events[i]["arrangoernavn"]}
+        arrangoer={events[i]["arrangoernavn"]}
         sted={events[i]["sted"]}
         event={<h2>{events[i]["navn"]}</h2>}
         tid={events[i]["starttid"]}
