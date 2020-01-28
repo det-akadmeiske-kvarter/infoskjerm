@@ -22,7 +22,6 @@ var etasje3 = ["Troferommet", "Storelogen", "Støy", "Stillhet", "Halvtimen"];
  * Takes room name and returns which floor event is in.
  *
  */
-
 export function getFloorNumber(roomName) {
   if (etasje1.indexOf(roomName) >= 0) {
     return 1;
@@ -40,12 +39,21 @@ export function getFloorNumber(roomName) {
  * Takes a list with events, and returns events for today.
  *
  */
-
 export function getCurrentEvents(events) {
+  // Events are already filtered using filterPastEvents function
   var currentEvents = [];
-  var datetime = getDate();
+  var dateToday = getDate();
+
+  var dateTime3HoursAgo = new Date(1580173200000);
+  dateTime3HoursAgo.setHours(dateTime3HoursAgo.getHours() - 3);
+
+  var date3HoursAgo = getDate(dateTime3HoursAgo);
   for (var i = 0; i < events.length; i++) {
-    if (events[i]["dato"] == datetime) {
+    if (events[i]["dato"] == dateToday) {
+      currentEvents.push(events[i]);
+    } else if (events[i]["dato"] == date3HoursAgo) {
+      // If event started yesterday
+      // Then show them
       currentEvents.push(events[i]);
     }
   }
@@ -56,7 +64,6 @@ export function getCurrentEvents(events) {
  * Get events for today, at inFloor
  * Example: Get events at 2nd floor -> getEventsAtFloor(events,2)
  */
-
 export function getEventsAtFloor(events, inFloor) {
   var eventsAtFloor = [];
   var currentEvents = getCurrentEvents(events);
@@ -109,8 +116,8 @@ export function filterPastEvents(events) {
 /**
  * Returns the current date
  */
-export function getDate() {
-  var currentdate = new Date();
+export function getDate(date) {
+  var currentdate = date ? date : new Date();
   var year = currentdate.getFullYear();
   var month = currentdate.getMonth() + 1;
   var day = currentdate.getDate();

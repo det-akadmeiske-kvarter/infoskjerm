@@ -28,9 +28,11 @@ class App extends Component {
    * this will be visible at 03:00 until 03:00.
    */
   componentDidMount() {
-    /* this.interval = setInterval(() => {
+    /*
+    this.interval = setInterval(() => {
       this.setState({ eventData: filterPastEvents(returnDummyData()) });
-    }, 5000); */
+    }, 5000);
+    */
 
     Axios.get("https://kvarteret.no/info/fetchxml.php")
       .then(res => {
@@ -63,7 +65,7 @@ class App extends Component {
             console.log(err);
           });
       }
-    }, 30000);
+    }, 30*1000);
   }
 
   componentWillUnmount() {
