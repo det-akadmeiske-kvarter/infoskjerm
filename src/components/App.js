@@ -42,18 +42,6 @@ class App extends Component {
         console.log(err);
       });
     this.interval = setInterval(() => {
-      console.log(this.state.onPause);
-      var time = getTime();
-      if (time >= "23:55:00" && time <= "23:59:00") {
-        if (this.state.onPause !== true) {
-          this.setState({ onPause: true });
-        }
-      }
-      if (time >= "03:00:00" && time <= "03:05:00") {
-        if (this.state.onPause !== false) {
-          this.setState({ onPause: false });
-        }
-      }
       if (this.state.onPause === false) {
         Axios.get("https://kvarteret.no/info/fetchxml.php")
           .then(res => {

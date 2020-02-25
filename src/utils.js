@@ -16,7 +16,13 @@ var etasje2 = [
   "Lobbyen",
   "Bakgården"
 ];
-var etasje3 = ["Troferommet", "Storelogen", "Støy", "Stillhet", "Halvtimen"];
+var etasje3 = [
+  "Troferommet",
+  "Storelogen",
+  "Støy",
+  "Stillhet",
+  "Halvtimen"
+];
 
 /**
  * Takes room name and returns which floor event is in.
@@ -44,7 +50,7 @@ export function getCurrentEvents(events) {
   var currentEvents = [];
   var dateToday = getDate();
 
-  var dateTime3HoursAgo = new Date(1580173200000);
+  var dateTime3HoursAgo = new Date();
   dateTime3HoursAgo.setHours(dateTime3HoursAgo.getHours() - 3);
 
   var date3HoursAgo = getDate(dateTime3HoursAgo);
@@ -104,11 +110,11 @@ export function generateEventCards(events) {
 export function filterPastEvents(events) {
   var time = getTime();
   var filteredEvents = events.filter(e => {
-    if (e.slutt >= "00:00:00" && e.slutt <= "03:00:00") {
+    if (e.slutt > time || getDate(new Date(e.dato)) == getDate()) {
       return e;
-    } else if (e.slutt > time) {
+    } else if (e.slutt >= "00:00:00" && e.slutt <= "03:00:00") {
       return e;
-    }
+    } 
   });
   return filteredEvents;
 }
