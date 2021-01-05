@@ -10,7 +10,7 @@
   "author": "IT Kvarteret",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "radium": "^0.25.1",
     "react": "^16.8.1",
     "react-animate-on-change": "^2.1.1",
